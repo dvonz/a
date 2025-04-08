@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyage IA - Voyages de Luxe avec Intelligence Artificielle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fef6e4; /* Light sandy beach color */
+            color: #172c66; /* Deep blue text */
+        }
+        
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hawaii-gradient {
+            background: linear-gradient(135deg, #f582ae 0%, #8bd3dd 50%, #f9bc60 100%); /* Tropical gradient */
+        }
+        
+        .tropical-gradient {
+            background: linear-gradient(to right, #8bd3dd, #f582ae, #f9bc60); /* Watermelon, teal and yellow */
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glow-button {
+            transition: all 0.3s ease;
+        }
+        
+        .glow-button:hover {
+            box-shadow: 0 0 15px rgba(249, 199, 71, 0.5);
+        }
+        
+        .ai-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(249, 199, 71, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(249, 199, 71, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(249, 199, 71, 0);
+            }
+        }
+        
+        .tropical-pattern {
+            background-image: url('https://www.transparenttextures.com/patterns/tropical-leaves.png');
+            background-color: #fef6e4;
+        }
+        
+        .flower-decoration {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-image: url('https://www.transparenttextures.com/patterns/hibiscus.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 50px;
+        }
+        
+        .wave-divider .shape-fill {
+            fill: #fef6e4; /* Matching sandy background */
+        }
+
+        /* Hawaiian themed sections */
+        .hawaii-section {
+            background-color: #fef6e4;
+            border-top: 3px solid #f9bc60;
+            border-bottom: 3px solid #8bd3dd;
+        }
+
+        /* Tropical button styles */
+        .tropical-btn {
+            background: linear-gradient(45deg, #f582ae, #f9bc60);
+            color: #001858;
+            border: none;
+            font-weight: bold;
+        }
+
+        .tropical-btn:hover {
+            background: linear-gradient(45deg, #f9bc60, #f582ae);
+        }
+
+        /* Palm leaf divider */
+        .palm-divider {
+            background-image: url('https://www.transparenttextures.com/patterns/palm-leaf.png');
+            height: 50px;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body class="tropical-pattern">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="hawaii-gradient text-white px-3 py-2 rounded-lg mr-2">
+                        <i class="fas fa-umbrella-beach text-xl"></i>
+                    </div>
+                    <span class="playfair text-2xl font-bold text-gray-800">Voyage <span class="text-pink-500">IA</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-800 hover:text-pink-500 font-medium">Destinations</a>
+                    <a href="#" class="text-gray-800 hover:text-pink-500 font-medium">Expériences</a>
+                    <a href="#" class="text-gray-800 hover:text-pink-500 font-medium">À propos</a>
+                    <a href="#" class="text-gray-800 hover:text-pink-500 font-medium">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="flower-decoration" style="top: 10%; left: 5%;"></div>
+        <div class="flower-decoration" style="bottom: 15%; right: 5%; transform: rotate(45deg);"></div>
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <video autoplay muted loop class="absolute z-0 w-auto min-w-full min-h-full max-w-none">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-waves-coming-to-the-beach-5016-large.mp4" type="video/mp4">
+        </video>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="playfair text-5xl md:text-7xl font-bold text-white mb-6 glow-text">Votre Voyage de Rêve à Hawaï</h1>
+            <p class="text-xl md:text-2xl text-white mb-10 max-w-3xl mx-auto">Laissez notre assistant de voyage IA créer votre escapade tropicale parfaite</p>
+            <button class="tropical-btn text-white px-8 py-4 rounded-full text-lg font-bold glow-button transition-all duration-300 flex items-center justify-center mx-auto">
+                <i class="fas fa-umbrella-beach mr-2"></i> Commencez Votre Aventure
+            </button>
+        </div>
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- AI Travel Assistant -->
+    <section class="py-20 hawaii-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl font-bold text-gray-800 mb-4">Découvrez Votre Concierge de Voyage IA</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Notre IA avancée analyse des milliers d'options pour créer votre itinéraire tropical parfait</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-white p-8 rounded-xl card-hover border-t-4 border-pink-400 shadow-lg">
+                    <div class="hawaii-gradient text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-brain text-2xl"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-center mb-4 text-gray-800">Correspondance Intelligente</h3>
+                    <p class="text-gray-600 text-center">Notre IA apprend vos préférences pour suggérer des plages et des expériences sur mesure.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl card-hover border-t-4 border-teal-400 shadow-lg">
+                    <div class="hawaii-gradient text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-center mb-4 text-gray-800">Itinéraires Instantanés</h3>
+                    <p class="text-gray-600 text-center">Obtenez des plans de voyage complets en quelques secondes, avec des vols, hôtels et activités.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl card-hover border-t-4 border-yellow-400 shadow-lg">
+                    <div class="hawaii-gradient text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-crown text-2xl"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-center mb-4 text-gray-800">Traitement VIP</h3>
+                    <p class="text-gray-600 text-center">Profitez d'un accès exclusif dans les meilleurs resorts tropicaux du monde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vacation Broker Profile -->
+    <section class="py-20 relative" style="background-color: #f3d2c1;"> <!-- Peach background -->
+        <div class="flower-decoration" style="top: 10%; right: 5%; transform: rotate(90deg);"></div>
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" 
+                             alt="Vicky Savard" 
+                             class="w-full h-auto rounded-xl shadow-xl border-4 border-white">
+                        <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-full shadow-lg">
+                            <div class="hawaii-gradient text-white w-16 h-16 rounded-full flex items-center justify-center">
+                                <i class="fas fa-headset text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-16">
+                    <h2 class="playfair text-4xl font-bold text-gray-800 mb-6">Votre Agent de Voyage Personnel</h2>
+                    <h3 class="text-2xl font-medium text-pink-500 mb-4">Vicky Savard</h3>
+                    <p class="text-gray-700 mb-6 text-lg">Avec plus de 15 ans d'expérience dans la planification de voyages tropicaux, Vicky combine son expertise humaine avec notre technologie IA pour créer des vacances hawaïennes inoubliables.</p>
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <div class="bg-white px-4 py-2 rounded-full shadow-sm">
+                            <span class="text-gray-800"><i class="fas fa-globe-europe text-pink-500 mr-2"></i> 87 Îles</span>
+                        </div>
+                        <div class="bg-white px-4 py-2 rounded-full shadow-sm">
+                            <span class="text-gray-800"><i class="fas fa-heart text-red-500 mr-2"></i> 2 500+ Clients</span>
+                        </div>
+                        <div class="bg-white px-4 py-2 rounded-full shadow-sm">
+                            <span class="text-gray-800"><i class="fas fa-award text-yellow-500 mr-2"></i> Expert Hawaï</span>
+                        </div>
+                    </div>
+                    <button class="tropical-btn text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center">
+                        <i class="fas fa-phone-alt mr-2"></i> Planifier un appel avec Vicky
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Palm divider -->
+    <div class="palm-divider"></div>
+
+    <!-- AI Trip Finder -->
+    <section class="py-20 tropical-gradient text-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-10">
+                        <h2 class="playfair text-3xl font-bold text-gray-800 mb-6">Trouvez Votre Voyage Tropical Parfait</h2>
+                        <p class="text-gray-600 mb-8">Répondez à quelques questions et notre IA créera des options de vacances hawaïennes personnalisées rien que pour vous.</p>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Style de Voyage</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button class="border border-gray-300 rounded-lg py-3 px-4 text-center hover:border-pink-500 hover:bg-pink-50 transition-all">
+                                        <i class="fas fa-umbrella-beach text-pink-500 mb-1 block text-xl"></i>
+                                        Plage
+                                    </button>
+                                    <button class="border border-gray-300 rounded-lg py-3 px-4 text-center hover:border-pink-500 hover:bg-pink-50 transition-all">
+                                        <i class="fas fa-hiking text-pink-500 mb-1 block text-xl"></i>
+                                        Aventure
+                                    </button>
+                                    <button class="border border-gray-300 rounded-lg py-3 px-4 text-center hover:border-pink-500 hover:bg-pink-50 transition-all">
+                                        <i class="fas fa-water text-pink-500 mb-1 block text-xl"></i>
+                                        Surf
+                                    </button>
+                                    <button class="border border-gray-300 rounded-lg py-3 px-4 text-center hover:border-pink-500 hover:bg-pink-50 transition-all">
+                                        <i class="fas fa-heart text-pink-500 mb-1 block text-xl"></i>
+                                        Lune de Miel
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Budget</label>
+                                <select class="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                                    <option>Économique (1 000€ - 3 000€)</option>
+                                    <option>Confort (3 000€ - 6 000€)</option>
+                                    <option>Premium (6 000€ - 10 000€)</option>
+                                    <option selected>Luxe (10 000€+)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Dates de Voyage</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <input type="text" placeholder="Date de Départ" class="border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-pink-500" onfocus="(this.type='date')">
+                                    <input type="text" placeholder="Date de Retour" class="border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-pink-500" onfocus="(this.type='date')">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 bg-pink-500 text-white p-10 flex flex-col justify-center relative">
+                        <div class="absolute top-6 right-6">
+                            <div class="ai-pulse bg-white text-pink-500 w-12 h-12 rounded-full flex items-center justify-center">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="playfair text-3xl font-bold mb-6">Matchmaking de Voyage IA</h3>
+                        <p class="mb-8">Notre algorithme analyse des milliers d'options pour trouver votre voyage tropical parfait.</p>
+                        <div class="mb-8">
+                            <div class="flex justify-between mb-2">
+                                <span>Précision de Correspondance</span>
+                                <span>98%</span>
+                            </div>
+                            <div class="w-full bg-pink-400 rounded-full h-2.5">
+                                <div class="bg-white h-2.5 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <button class="bg-white text-pink-500 hover:bg-gray-100 font-bold py-4 px-6 rounded-full transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-magic mr-3"></i> Générer Mon Voyage Parfait
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 hawaii-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl font-bold text-gray-800 mb-4">Nos Voyageurs Adorent Voyage IA</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ne nous croyez pas sur parole - écoutez nos clients satisfaits</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl card-hover shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-gray-500">Il y a 2 semaines</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Vicky et l'IA ont créé la lune de miel la plus magique à Maui. Chaque détail était parfait - de la croisière privée au coucher de soleil à la suite avec vue sur l'océan !"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah J." class="w-12 h-12 rounded-full mr-4 border-2 border-pink-300">
+                        <div>
+                            <h4 class="font-bold">Sarah J.</h4>
+                            <p class="text-gray-500 text-sm">Lune de Miel à Maui</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl card-hover shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-gray-500">Il y a 1 mois</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"L'IA a suggéré des activités que je n'aurais jamais trouvées seul. Notre voyage familial à Oahu était incroyable - le mélange parfait de plage et de culture locale."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="w-12 h-12 rounded-full mr-4 border-2 border-teal-300">
+                        <div>
+                            <h4 class="font-bold">Michael T.</h4>
+                            <p class="text-gray-500 text-sm">Famille à Oahu</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl card-hover shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-gray-500">Il y a 3 jours</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Le resort privé que l'IA a sélectionné à Kauai était au-delà de mes attentes. Le service était exceptionnel et la plage était paradisiaque."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jennifer L." class="w-12 h-12 rounded-full mr-4 border-2 border-yellow-300">
+                        <div>
+                            <h4 class="font-bold">Jennifer L.</h4>
+                            <p class="text-gray-500 text-sm">Retraite à Kauai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 tropical-gradient text-white relative">
+        <div class="flower-decoration" style="top: 20%; left: 10%; opacity: 0.15;"></div>
+        <div class="flower-decoration" style="bottom: 20%; right: 10%; opacity: 0.15; transform: rotate(120deg);"></div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="playfair text-4xl md:text-5xl font-bold mb-6 glow-text">Prêt pour Votre Voyage à Hawaï ?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Laissez l'IA puissante de Voyage IA et l'expertise de Vicky créer un voyage tropical dont vous vous souviendrez pour toujours.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-white text-pink-500 hover:bg-gray-100 font-bold py-4 px-8 rounded-full transition-all duration-300">
+                    <i class="fas fa-calendar-alt mr-2"></i> Planifier Mon Voyage
+                </button>
+                <button class="border-2 border-white text-white hover:bg-white hover:text-pink-500 font-bold py-4 px-8 rounded-full transition-all duration-300">
+                    <i class="fas fa-headset mr-2"></i> Parler à Vicky
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="hawaii-gradient text-white px-3 py-2 rounded-lg mr-2">
+                            <i class="fas fa-umbrella-beach text-xl"></i>
+                        </div>
+                        <span class="playfair text-2xl font-bold">Voyage <span class="text-pink-400">IA</span></span>
+                    </div>
+                    <p class="text-gray-400">Planification de voyage tropical alimentée par l'IA avec une touche humaine.</p>
+                </div>
+                
+                <div>
+                    <h3 class="playfair text-xl font-bold mb-4">Explorer</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Destinations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Expériences Hawaï</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Offres Spéciales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Cartes Cadeaux</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="playfair text-xl font-bold mb-4">Entreprise</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">À propos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Notre Technologie IA</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Carrières</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Presse</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="playfair text-xl font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">123 Avenue du Paradis, Suite 100<br>Honolulu, Hawaï 96815</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">+1 (808) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">aloha@voyageia.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Voyage IA. Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-pink-400 transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-pink-400 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-pink-400 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-pink-400 transition">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for the AI trip finder button
+        document.addEventListener('DOMContentLoaded', function() {
+            const generateButton = document.querySelector('.bg-white.text-pink-500');
+            
+            if (generateButton) {
+                generateButton.addEventListener('mouseover', function() {
+                    this.querySelector('.fa-magic').classList.add('fa-spin');
+                });
+                
+                generateButton.addEventListener('mouseout', function() {
+                    this.querySelector('.fa-magic').classList.remove('fa-spin');
+                });
+            }
+            
+            // Mock AI processing animation
+            const aiButton = document.querySelector('.ai-pulse');
+            if (aiButton) {
+                setInterval(() => {
+                    aiButton.classList.toggle('bg-yellow-400');
+                }, 2000);
+            }
+            
+            // Add Hawaiian music toggle
+            const musicToggle = document.createElement('div');
+            musicToggle.className = 'fixed bottom-6 right-6 z-50';
+            musicToggle.innerHTML = `
+                <button id="musicToggle" class="bg-pink-500 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center hover:bg-pink-600 transition-all">
+                    <i class="fas fa-music text-xl"></i>
+                    <audio id="hawaiiMusic" loop>
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    </audio>
+                </button>
+            `;
+            document.body.appendChild(musicToggle);
+            
+            const musicButton = document.getElementById('musicToggle');
+            const hawaiiMusic = document.getElementById('hawaiiMusic');
+            let musicPlaying = false;
+            
+            musicButton.addEventListener('click', function() {
+                if (musicPlaying) {
+                    hawaiiMusic.pause();
+                    this.innerHTML = '<i class="fas fa-music text-xl"></i>';
+                    this.classList.remove('bg-pink-600');
+                    this.classList.add('bg-pink-500');
+                } else {
+                    hawaiiMusic.play();
+                    this.innerHTML = '<i class="fas fa-pause text-xl"></i>';
+                    this.classList.remove('bg-pink-500');
+                    this.classList.add('bg-pink-600');
+                }
+                musicPlaying = !musicPlaying;
+            });
+
+            // Add flower animation on hover for cards
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const flower = document.createElement('div');
+                    flower.className = 'flower-decoration';
+                    flower.style.position = 'absolute';
+                    flower.style.width = '80px';
+                    flower.style.height = '80px';
+                    flower.style.opacity = '0.3';
+                    flower.style.top = Math.random() * 80 + '%';
+                    flower.style.left = Math.random() * 80 + '%';
+                    flower.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    flower.style.transition = 'all 0.5s ease';
+                    flower.style.zIndex = '0';
+                    
+                    this.appendChild(flower);
+                    
+                    setTimeout(() => {
+                        flower.style.opacity = '0';
+                        flower.style.transform = `rotate(${Math.random() * 360}deg) scale(1.5)`;
+                    }, 300);
+                    
+                    setTimeout(() => {
+                        if (this.contains(flower)) {
+                            this.removeChild(flower);
+                        }
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=dvonz/a" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
